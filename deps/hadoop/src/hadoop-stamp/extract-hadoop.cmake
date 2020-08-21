@@ -1,7 +1,7 @@
 # Make file names absolute:
 #
-get_filename_component(filename "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz" ABSOLUTE)
-get_filename_component(directory "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent" ABSOLUTE)
+get_filename_component(filename "/Users/jerry/Downloads/powerlyra-master/deps/hadoop/src/hadoop-1.0.1.tar.gz" ABSOLUTE)
+get_filename_component(directory "/Users/jerry/Downloads/powerlyra-master/deps/hadoop/src/hadoop" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'
@@ -14,10 +14,10 @@ endif()
 # Prepare a space for extracting:
 #
 set(i 1234)
-while(EXISTS "${directory}/../ex-libevent${i}")
+while(EXISTS "${directory}/../ex-hadoop${i}")
   math(EXPR i "${i} + 1")
 endwhile()
-set(ut_dir "${directory}/../ex-libevent${i}")
+set(ut_dir "${directory}/../ex-hadoop${i}")
 file(MAKE_DIRECTORY "${ut_dir}")
 
 # Extract it:

@@ -1,7 +1,7 @@
 # Make file names absolute:
 #
-get_filename_component(filename "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz" ABSOLUTE)
-get_filename_component(directory "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent" ABSOLUTE)
+get_filename_component(filename "/Users/jerry/Downloads/powerlyra-master/deps/opencv/src/opencv-2.4.9.zip" ABSOLUTE)
+get_filename_component(directory "/Users/jerry/Downloads/powerlyra-master/deps/opencv/src/opencv" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'
@@ -14,10 +14,10 @@ endif()
 # Prepare a space for extracting:
 #
 set(i 1234)
-while(EXISTS "${directory}/../ex-libevent${i}")
+while(EXISTS "${directory}/../ex-opencv${i}")
   math(EXPR i "${i} + 1")
 endwhile()
-set(ut_dir "${directory}/../ex-libevent${i}")
+set(ut_dir "${directory}/../ex-opencv${i}")
 file(MAKE_DIRECTORY "${ut_dir}")
 
 # Extract it:

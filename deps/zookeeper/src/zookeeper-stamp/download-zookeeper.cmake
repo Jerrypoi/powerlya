@@ -22,16 +22,16 @@ function(check_file_hash has_hash hash_is_good)
   set("${has_hash}" TRUE PARENT_SCOPE)
 
   message(STATUS "verifying file...
-       file='/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz'")
+       file='/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz'")
 
-  file("MD5" "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz" actual_value)
+  file("MD5" "/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz" actual_value)
 
-  if(NOT "${actual_value}" STREQUAL "c4c56f986aa985677ca1db89630a2e11")
+  if(NOT "${actual_value}" STREQUAL "d85f9751724d3f20f792803b61c4db24")
     set("${hash_is_good}" FALSE PARENT_SCOPE)
     message(STATUS "MD5 hash of
-    /Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz
+    /Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz
   does not match expected value
-    expected: 'c4c56f986aa985677ca1db89630a2e11'
+    expected: 'd85f9751724d3f20f792803b61c4db24'
       actual: '${actual_value}'")
   else()
     set("${hash_is_good}" TRUE PARENT_SCOPE)
@@ -71,47 +71,47 @@ function(sleep_before_download attempt)
   execute_process(COMMAND "${CMAKE_COMMAND}" -E sleep "${sleep_seconds}")
 endfunction()
 
-if("/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz" STREQUAL "")
+if("/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz" STREQUAL "")
   message(FATAL_ERROR "LOCAL can't be empty")
 endif()
 
-if("https://nchc.dl.sourceforge.net/project/levent/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz" STREQUAL "")
+if("http://mirror.metrocast.net/apache/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz" STREQUAL "")
   message(FATAL_ERROR "REMOTE can't be empty")
 endif()
 
-if(EXISTS "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz")
+if(EXISTS "/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz")
   check_file_hash(has_hash hash_is_good)
   if(has_hash)
     if(hash_is_good)
       message(STATUS "File already exists and hash match (skip download):
-  file='/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz'
-  MD5='c4c56f986aa985677ca1db89630a2e11'"
+  file='/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz'
+  MD5='d85f9751724d3f20f792803b61c4db24'"
       )
       return()
     else()
       message(STATUS "File already exists but hash mismatch. Removing...")
-      file(REMOVE "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz")
+      file(REMOVE "/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz")
     endif()
   else()
     message(STATUS "File already exists but no hash specified (use URL_HASH):
-  file='/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz'
+  file='/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz'
 Old file will be removed and new file downloaded from URL."
     )
-    file(REMOVE "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz")
+    file(REMOVE "/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz")
   endif()
 endif()
 
 set(retry_number 5)
 
 message(STATUS "Downloading...
-   dst='/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz'
+   dst='/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz'
    timeout='none'"
 )
 
 foreach(i RANGE ${retry_number})
   sleep_before_download(${i})
 
-  foreach(url https://nchc.dl.sourceforge.net/project/levent/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz)
+  foreach(url http://mirror.metrocast.net/apache/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz)
     message(STATUS "Using src='${url}'")
 
     
@@ -121,7 +121,7 @@ foreach(i RANGE ${retry_number})
 
     file(
         DOWNLOAD
-        "${url}" "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz"
+        "${url}" "/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz"
         SHOW_PROGRESS
         # no TIMEOUT
         STATUS status
@@ -137,7 +137,7 @@ foreach(i RANGE ${retry_number})
       check_file_hash(has_hash hash_is_good)
       if(has_hash AND NOT hash_is_good)
         message(STATUS "Hash mismatch, removing...")
-        file(REMOVE "/Users/jerry/Downloads/powerlyra-master/deps/event/src/libevent-2.0.22-stable.tar.gz")
+        file(REMOVE "/Users/jerry/Downloads/powerlyra-master/deps/zookeeper/src/zookeeper-3.5.1-alpha.tar.gz")
       else()
         message(STATUS "Downloading... done")
         return()

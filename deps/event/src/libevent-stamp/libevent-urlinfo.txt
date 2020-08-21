@@ -1,3 +1,3 @@
 repository='external project URL'
-module='http://iweb.dl.sourceforge.net/project/levent/libevent/libevent-2.0/libevent-2.0.18-stable.tar.gz'
-tag='MD5=aa1ce9bc0dee7b8084f6855765f2c86a'
+module='https://nchc.dl.sourceforge.net/project/levent/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz'
+tag='MD5=c4c56f986aa985677ca1db89630a2e11'
